@@ -142,13 +142,17 @@
                 } else if (evt.keyCode == "w".charCodeAt(0) || evt.keyCode == "W".charCodeAt(0)) { //b
                     reset();    
                     var container = document.getElementById('container');
+                    container.style.backgroundImage = `url(${image})`;
+                    container.style.backgroundSize = 'cover';
+                    container.style.backgroundPosition = 'center';
+     
                     var linGrad1 = 'linear-gradient(#14EBFF 0,#14EBFF 50%,#FFFF70 50%,#FFFF70 100%)';
                     var linGrad2 = 'linear-gradient(#FF85DA 0,#FF85DA 50%,#AAA 50%,#AAA 100%)';
 
-                    container.style.background = `${linGrad1},${linGrad2}, url(${image})`;
+                    container.style.backgroundImage = `${linGrad1},${linGrad2}, url(${image})`;
                     container.style.backgroundSize = '50% 100%, 50% 100%, 50% 50%';
+                    container.style.backgroundPosition = 'top left, top right';
                     container.style.backgroundRepeat = 'no-repeat, no-repeat, repeat';
-                    container.style.backgroundSize = '50% 100%, 50% 100%, 50% 50%';
                     container.style.backgroundBlendMode = 'color';
 
                 }
