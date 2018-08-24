@@ -77,7 +77,7 @@
                 <li>s: smoke</li>
                 <li>w: warhole</li>
                 <li>x: xray</li>
-               
+
             </ul>
         </div>
     </div>
@@ -96,6 +96,44 @@
                 container.style.backgroundBlendMode = '';
                 container.style.filter = '';
             }
+
+            function nightVision(container) {
+                container.style.backgroundPosition = '';
+                container.style.filter = '';
+                var rgrad = 'radial-gradient(rgba(0,255,0,.8),green)';
+                var repeatGrad =
+                    'repeating-linear-gradient(transparent 0,rgba(0,0,0,.2) 3px,transparent 6px)';
+                container.style.background = `url(${image}), ${rgrad},${repeatGrad}`;
+                container.style.backgroundBlendMode = "overlay";
+                container.style.backgroundSize = "cover";
+            }
+
+            function smoke(container) {
+                container.style.backgroundImage = `url(${image})`;
+                container.style.filter = 'blur(5px) sepia(100%)';
+            }
+
+            function xray(container) {
+                container.style.background = `url(${image})`, `url(${image})`;
+                container.style.backgroundSize = 'cover';
+                container.style.backgroundBlendMode = 'difference';
+                container.style.backgroundPosition = "1px 1px, 2px 2px";
+                container.style.filter = 'brightness(3) invert(1) grayscale(1)';
+            }
+
+            function warhole(container) {
+                container.style.backgroundImage = `url(${image})`;
+                container.style.backgroundSize = 'cover';
+                container.style.backgroundPosition = 'center';
+                var linGrad1 = 'linear-gradient(#14EBFF 0,#14EBFF 50%,#FFFF70 50%,#FFFF70 100%)';
+                var linGrad2 = 'linear-gradient(#FF85DA 0,#FF85DA 50%,#AAA 50%,#AAA 100%)';
+                container.style.backgroundImage = `${linGrad1},${linGrad2}, url(${image})`;
+                container.style.backgroundSize = '50% 100%, 50% 100%, 50% 50%';
+                container.style.backgroundPosition = 'top left, top right';
+                container.style.backgroundRepeat = 'no-repeat, no-repeat, repeat';
+                container.style.backgroundBlendMode = 'color';
+            }
+            var effects = ['n', 's', 'w', 'x'];
             var image = '';
             var freeze = false;
             "use strict";
@@ -109,45 +147,16 @@
                 evt = evt || window.event;
                 if (evt.keyCode == "n".charCodeAt(0) || evt.keyCode == "N".charCodeAt(0)) { //N
                     reset();
-                    var container = document.getElementById('container');
-                    container.style.backgroundPosition = '';
-                    container.style.filter = '';
-                    var rgrad = 'radial-gradient(rgba(0,255,0,.8),green)';
-                    var repeatGrad =
-                        'repeating-linear-gradient(transparent 0,rgba(0,0,0,.2) 3px,transparent 6px)';
-                    container.style.background = `url(${image}), ${rgrad},${repeatGrad}`;
-                    container.style.backgroundBlendMode = "overlay";
-                    container.style.backgroundSize = "cover";
+                    nightVision(document.getElementById('container'));
                 } else if (evt.keyCode == "x".charCodeAt(0) || evt.keyCode == "X".charCodeAt(0)) { //x
                     reset();
-                    var container = document.getElementById('container');
-                    // container.setAttribute("class", "pencil-effect");
-                    container.style.background = `url(${image})`, `url(${image})`;
-                    container.style.backgroundSize = 'cover';
-                    container.style.backgroundBlendMode = 'difference';
-                    container.style.backgroundPosition = "1px 1px, 2px 2px";
-                    container.style.filter = 'brightness(3) invert(1) grayscale(1)';
+                    xray(document.getElementById('container'));
                 } else if (evt.keyCode == "w".charCodeAt(0) || evt.keyCode == "W".charCodeAt(0)) { //b
                     reset();
-                    var container = document.getElementById('container');
-                    container.style.backgroundImage = `url(${image})`;
-                    container.style.backgroundSize = 'cover';
-                    container.style.backgroundPosition = 'center';
-
-                    var linGrad1 = 'linear-gradient(#14EBFF 0,#14EBFF 50%,#FFFF70 50%,#FFFF70 100%)';
-                    var linGrad2 = 'linear-gradient(#FF85DA 0,#FF85DA 50%,#AAA 50%,#AAA 100%)';
-
-                    container.style.backgroundImage = `${linGrad1},${linGrad2}, url(${image})`;
-                    container.style.backgroundSize = '50% 100%, 50% 100%, 50% 50%';
-                    container.style.backgroundPosition = 'top left, top right';
-                    container.style.backgroundRepeat = 'no-repeat, no-repeat, repeat';
-                    container.style.backgroundBlendMode = 'color';
-
+                    warhole(document.getElementById('container'));
                 } else if (evt.keyCode == "s".charCodeAt(0) || evt.keyCode == "S".charCodeAt(0)) { //b
                     reset();
-                    let container = document.getElementById('container');
-                    container.style.backgroundImage = `url(${image})`;
-                    container.style.filter = 'blur(5px) sepia(100%)';
+                    smoke(document.getElementById('container'));
                 } else if (evt.keyCode == "o".charCodeAt(0) || evt.keyCode == "O".charCodeAt(0)) { //b
                     reset();
                     let container = document.getElementById('container');
