@@ -72,9 +72,9 @@ function setupHTTP() {
 function setupWebcam() {
 
     function capture() {
-
+        // console.log("capture");
         Webcam.capture( "picture", function( err, data ) {
-
+            // console.log("captured");
             if( err ) {
 
                 throw err;
@@ -96,7 +96,7 @@ function setupWebcam() {
 
             WSS.broadcast( data );
 
-            setTimeout( capture, 10000 );
+            setTimeout( capture, 1000 );
 
         });
 
