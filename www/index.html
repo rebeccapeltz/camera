@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<!-- https://github.com/chuckfairy/node-webcam -->
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <title>Websocket node-webcam example</title>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #img {
+            width: 100%;
+            display: block;
+        }
+
+        /*
+#img2 {
+    width: 50%;
+    display: inline-block;
+} */
+
+        /* .row { display: flex; } .column { flex: 33.33%; padding: 5px; } */
+
+        .pencil-effect {
+            /* $url : url(photo.jpg); */
+            /* background-image: $url; */
+            background-size: cover;
+            background-position: center;
+
+            /* @supports (filter: invert(1)) and (background-blend-mode: difference) { */
+            /* background-image: $url, $url; */
+            background-blend-mode: difference;
+            background-position: calc(50% - 1px) calc(50% - 1px),
+            calc(50% + 1px) calc(50% + 1px);
+            filter: brightness(2) invert(1) grayscale(1);
+            box-shadow: inset 0 0 0 1px black;
+            /* } */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- <div id="container">
+
+        <img id="img">
+
+    </div> -->
+
+    <!-- <div class="row">
+        <div class="column">
+            <img id="img" style="width:100%">
+        </div>
+        <div class="column">
+            <img id="img2" style="width:100%">
+        </div>
+        <div class="column" style="width:100%;height:100%;">
+            <div id="img3" style="width:100%;height:100%"></div>
+
+        </div>
+    </div> -->
+    <!-- <div class="row">
+        <input type="button" id="drawing" value="make illustration">
+    </div> -->
+
+
+
+    <script>
+        (function () {
+            var image = '';
+            "use strict";
+
+            var container = document.getElementById("container");
+
+            var img = document.getElementById("img");
+            var img2 = document.getElementById("img2");
+
+            document.onkeydown = function (evt) {
+                evt = evt || window.event;
+                if (evt.keyCode == 78 || evt.keyCode == 110) {
+                    var body = document.getElementsByTagName('body')[0];
+                    body.style.backgroundPosition = '';
+                    body.style.filter = '';
+                    var rgrad = 'radial-gradient(rgba(0,255,0,.8),green)';
+                    var repeatGrad =
+                        'repeating-linear-gradient(transparent 0,rgba(0,0,0,.2) 3px,transparent 6px)';
+                    body.style.background = `url(${image}), ${rgrad},${repeatGrad}`;
+                    body.style.backgroundBlendMode = "overlay";
+                    body.style.backgroundSize = "cover";
+
+
+                    //     url(moose.jpg),
+                    // radial-gradient(
+                    //     rgba(0,255,0,.8),
+                    //     black
+                    // ),
+                    // repeating-linear-gradient(
+                    //     transparent 0,
+                    //     rgba(0,0,0,.2) 3px,
+                    //     transparent 6px
+                    // );
+                    // background-blend-mode: overlay;
+                    // background-size: cover;
+                }
+            };
+
+
+            var ws = new WebSocket("ws://localhost:9091");
+
+            ws.onmessage = function (data) {
+                image = data.data;
+                // img.src = data.data;
+                // img2.src = data.data;
+
+
+                //apply pencil effect
+                // var body = document.getElementsByTagName('body')[0];
+                // body.style.backgroundImage = `url(${data.data})`, `url(${data.data})`;
+                // var img = document.querySelector("#img")
+                // img.style.backgroundImage = `url(${data.data})`, `url(${data.data})`;
+                // img.setAttribute("class", "pencil-effect");
+
+                var body = document.getElementsByTagName('body');
+                body[0].style.backgroundImage = `url(${data.data})`, `url(${data.data})`;
+                // body[0].setAttribute("class", "pencil-effect");
+                body[0].style.backgroundSize = 'cover';
+                body[0].style.backgroundBlendMode = 'difference';
+                body[0].style.backgroundPosition = "1px 1px, 2px 2px";
+                body[0].style.filter = 'brightness(3) invert(1) grayscale(1)';
+
+// body[0].style.filter = 'brightness(2) invert(1) grayscale(1)';
+                // body[0].style.boxShadow = 'inset 0 0 0 1px black';
+
+
+            };
+
+        })();
+    </script>
+
+</body>
+
+</html>
