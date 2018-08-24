@@ -18,7 +18,7 @@
             margin: 0;
         }
 
-        #container {
+        /* #container {
             width: 100%;
             height: 100%;
             position: absolute;
@@ -27,7 +27,7 @@
         #img {
             width: 100%;
             display: block;
-        }
+        } */
 
         /*
 #img2 {
@@ -94,7 +94,7 @@
 
             document.onkeydown = function (evt) {
                 evt = evt || window.event;
-                if (evt.keyCode == 78 || evt.keyCode == 110) {
+                if (evt.keyCode == 78 || evt.keyCode == 110) { //N
                     var body = document.getElementsByTagName('body')[0];
                     body.style.backgroundPosition = '';
                     body.style.filter = '';
@@ -104,20 +104,13 @@
                     body.style.background = `url(${image}), ${rgrad},${repeatGrad}`;
                     body.style.backgroundBlendMode = "overlay";
                     body.style.backgroundSize = "cover";
-
-
-                    //     url(moose.jpg),
-                    // radial-gradient(
-                    //     rgba(0,255,0,.8),
-                    //     black
-                    // ),
-                    // repeating-linear-gradient(
-                    //     transparent 0,
-                    //     rgba(0,0,0,.2) 3px,
-                    //     transparent 6px
-                    // );
-                    // background-blend-mode: overlay;
-                    // background-size: cover;
+                } else if (evt.keyCode == 88 || evt.keyCode == 120) {
+                    var body = document.getElementsByTagName('body')[0];
+                    // body.setAttribute("class", "pencil-effect");
+                    body.style.backgroundSize = 'cover';
+                    body.style.backgroundBlendMode = 'difference';
+                    body.style.backgroundPosition = "1px 1px, 2px 2px";
+                    body.style.filter = 'brightness(3) invert(1) grayscale(1)';
                 }
             };
 
@@ -140,12 +133,12 @@
                 var body = document.getElementsByTagName('body');
                 body[0].style.backgroundImage = `url(${data.data})`, `url(${data.data})`;
                 // body[0].setAttribute("class", "pencil-effect");
-                body[0].style.backgroundSize = 'cover';
-                body[0].style.backgroundBlendMode = 'difference';
-                body[0].style.backgroundPosition = "1px 1px, 2px 2px";
-                body[0].style.filter = 'brightness(3) invert(1) grayscale(1)';
+                // body[0].style.backgroundSize = 'cover';
+                // body[0].style.backgroundBlendMode = 'difference';
+                // body[0].style.backgroundPosition = "1px 1px, 2px 2px";
+                // body[0].style.filter = 'brightness(3) invert(1) grayscale(1)';
 
-// body[0].style.filter = 'brightness(2) invert(1) grayscale(1)';
+                // body[0].style.filter = 'brightness(2) invert(1) grayscale(1)';
                 // body[0].style.boxShadow = 'inset 0 0 0 1px black';
 
 
