@@ -96,7 +96,7 @@ function setupWebcam() {
 
             WSS.broadcast( data );
 
-            setTimeout( capture, 1000 );
+            setTimeout( capture, 10000 );
 
         });
 
