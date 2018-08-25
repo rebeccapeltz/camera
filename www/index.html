@@ -85,6 +85,18 @@
 
     <script>
         (function () {
+            "use strict";
+            var effects = ['n', 's', 'w', 'x'];
+            var currentEffect = '';
+            var image = '';
+            var freeze = false;
+            var container = document.getElementById('container');
+            var ws = new WebSocket("ws://localhost:9091");
+
+            const delay = (ms) => {
+                const startPoint = new Date().getTime()
+                while (new Date().getTime() - startPoint <= ms) { /* wait */ }
+            }
 
             function reset() {
                 var container = document.getElementById('container');
@@ -97,7 +109,7 @@
                 container.style.filter = '';
             }
 
-            function nightVision(container) {
+            function nightVision() {
                 container.style.backgroundPosition = '';
                 container.style.filter = '';
                 var rgrad = 'radial-gradient(rgba(0,255,0,.8),green)';
@@ -108,12 +120,12 @@
                 container.style.backgroundSize = "cover";
             }
 
-            function smoke(container) {
+            function smoke() {
                 container.style.backgroundImage = `url(${image})`;
                 container.style.filter = 'blur(5px) sepia(100%)';
             }
 
-            function xray(container) {
+            function xray() {
                 container.style.background = `url(${image})`, `url(${image})`;
                 container.style.backgroundSize = 'cover';
                 container.style.backgroundBlendMode = 'difference';
@@ -121,7 +133,7 @@
                 container.style.filter = 'brightness(3) invert(1) grayscale(1)';
             }
 
-            function warhole(container) {
+            function warhole() {
                 container.style.backgroundImage = `url(${image})`;
                 container.style.backgroundSize = 'cover';
                 container.style.backgroundPosition = 'center';
@@ -133,15 +145,29 @@
                 container.style.backgroundRepeat = 'no-repeat, no-repeat, repeat';
                 container.style.backgroundBlendMode = 'color';
             }
-            var effects = ['n', 's', 'w', 'x'];
-            var image = '';
-            var freeze = false;
-            "use strict";
 
-            var container = document.getElementById("container");
+            // function showEffects() {
+            //     while (true) {
+            //         console.log("in loop");
 
-            var img = document.getElementById("img");
-            var img2 = document.getElementById("img2");
+            //         if (image.length > 0) {
+            //             freeze = true;
+            //             var container = document.getElementById('container');
+            //             reset();
+            //             container.style.backgroundImage = `url(${image})`, `url(${image})`;
+            //             delay(1000);
+            //             // smoke();
+            //             // delay(1000);
+            //             freeze = false;
+            //         }
+            //     }
+            // }
+
+
+            // var container = document.getElementById("container");
+
+            // var img = document.getElementById("img");
+            // var img2 = document.getElementById("img2");
 
             document.onkeydown = function (evt) {
                 evt = evt || window.event;
@@ -167,17 +193,30 @@
             };
 
 
-            var ws = new WebSocket("ws://localhost:9091");
+
 
             ws.onmessage = function (data) {
                 if (!freeze) {
                     image = data.data;
-
-                    var container = document.getElementById('container');
+                    // var container = document.getElementById('container');
                     reset();
-                    container.style.backgroundImage = `url(${data.data})`, `url(${data.data})`;
+                    container.style.backgroundImage = `url(${image})`, `url(${image})`;
+                    setTimeout(() => {
+                        smoke();
+                        setTimeout(() => {
+                            nightVision();
+                            setTimeout(() => {
+                                warhole();
+                                setTimeout(() => {
+                                    xray();
+                                },2000)
+                            }, 2000)
+                        }, 2000)
+                    }, 2000);
                 }
             };
+
+
 
         })();
     </script>

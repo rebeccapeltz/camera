@@ -12,7 +12,7 @@ var FS = require( "fs" );
 var HTML_CONTENT = FS.readFileSync( __dirname + "/www/index.html" );
 var WS = require( "ws" );
 var WSS = new WS.Server({ port: 9091 });
-var CAPTURE_RATE = 1000;
+var CAPTURE_RATE = 5000;
 // Broadcast to all.
 WSS.broadcast = function broadcast( data ) {
     WSS.clients.forEach( function each( client ) {
