@@ -1,0 +1,32 @@
+{
+  "name": "camera-capture",
+  "version": "1.0.0",
+  "description": "Capture camera shots and share to web with websockets",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebeccapeltz/camera.git"
+  },
+  "keywords": [
+    "camera",
+    "css filters"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebeccapeltz/camera/issues"
+  },
+  "dependencies": {
+    "nopt": "*"
+  },
+  "devDependencies": {
+    "async": "*",
+    "chai": "*",
+    "mocha": "^3.1.0",
+    "ws": "^6.0.0"
+  },
+  "homepage": "https://github.com/rebeccapeltz/camera#readme"
+}
