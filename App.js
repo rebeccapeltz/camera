@@ -20,11 +20,8 @@ WSS.broadcast = function broadcast( data ) {
     });
 };
 
-<<<<<<< HEAD
-var NodeWebcam = require( "./index.js" );
-=======
+
 var NodeWebcam = require( "./index" );
->>>>>>> da167f6d161965aaf90855c9e47cfd18c88c11df
 var Webcam = NodeWebcam.create({
     callbackReturn: "base64",
     saveShots: false
