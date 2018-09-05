@@ -588,7 +588,7 @@ Webcam.Defaults = {
     //Use Webcam.list() for results
     //false for default device
 
-    device:   '2' ,
+    device:   '1' ,
 
 
     // [location, buffer, base64]

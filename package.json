@@ -1,7 +1,7 @@
 {
-  "name": "camera-capture",
+  "name": "web-camera-filtered",
   "version": "1.0.0",
-  "description": "Capture camera shots and share to web with websockets",
+  "description": "Capture camera shots and share to web with websockets and provide auto filtering effects",
   "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
