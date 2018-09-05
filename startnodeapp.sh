@@ -1,2 +1,2 @@
 #!/bin/bash
-node ~/projects/camera/App.js
+node /Users/kiosk/projects/camera/App.js
