@@ -26,7 +26,7 @@
     "async": "*",
     "chai": "*",
     "mocha": "^3.1.0",
-    "ws": "^6.0.0"
+    "ws": "^7.4.6"
   },
   "homepage": "https://github.com/rebeccapeltz/camera#readme"
 }
